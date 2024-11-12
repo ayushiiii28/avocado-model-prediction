@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avocado Price and Region Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin: 20px 0;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        button {
+            padding: 14px 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .result h3 {
+            font-size: 1.8em;
+            color: #333;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .container {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Avocado Price and Region Prediction</h1>
+
+        <form action="/" method="POST">
+            <label for="total_volume">Total Volume:</label>
+            <input type="text" id="total_volume" name="total_volume" value="10000" required><br>
+
+            <label for="plu_4046">PLU 4046:</label>
+            <input type="text" id="plu_4046" name="plu_4046" value="5000" required><br>
+
+            <label for="plu_4225">PLU 4225:</label>
+            <input type="text" id="plu_4225" name="plu_4225" value="3000" required><br>
+
+            <label for="plu_4770">PLU 4770:</label>
+            <input type="text" id="plu_4770" name="plu_4770" value="2000" required><br>
+
+            <label for="total_bags">Total Bags:</label>
+            <input type="text" id="total_bags" name="total_bags" value="8000" required><br>
+
+            <label for="small_bags">Small Bags:</label>
+            <input type="text" id="small_bags" name="small_bags" value="3000" required><br>
+
+            <label for="large_bags">Large Bags:</label>
+            <input type="text" id="large_bags" name="large_bags" value="4000" required><br>
+
+            <label for="xlarge_bags">X-Large Bags:</label>
+            <input type="text" id="xlarge_bags" name="xlarge_bags" value="1000" required><br>
+
+            <label for="month">Month:</label>
+            <input type="text" id="month" name="month" value="5" required><br>
+
+            <label for="day">Day:</label>
+            <input type="text" id="day" name="day" value="15" required><br>
+
+            <label for="type">Type (Conventional or Organic):</label>
+            <select id="type" name="type" required>
+                <option value="conventional">Conventional</option>
+                <option value="organic">Organic</option>
+            </select><br>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if price is not none %}
+            <div class="result">
+                <h3>Price Prediction: ${{ price }}</h3>
+                <h3>Region Prediction: {{ region }}</h3>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
